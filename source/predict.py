@@ -3,7 +3,8 @@ from keras.engine.saving import load_model
 import imageProcessing as ip
 import plotImages
 
-model = load_model('models/result.model')
+model_name = 'result'
+model = load_model('models/' + model_name + '.model')
 
 (_, _), (x_test, _) = mnist.load_data()
 

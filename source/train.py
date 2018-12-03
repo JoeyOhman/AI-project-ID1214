@@ -1,3 +1,4 @@
+from keras.callbacks import TensorBoard
 from keras.datasets import mnist
 import imageProcessing as ip
 import networkModel
@@ -16,10 +17,13 @@ y_test = ip.normalize_reshape(y_test)
 x_train = ip.noise_images(x_train, 0.5)
 x_test = ip.noise_images(x_test, 0.5)
 
+model_name = "result"
+
 model.fit(x_train, y_train,
-          epochs=100,
+          epochs=50,
           batch_size=256,
           shuffle=True,
-          validation_data=(x_test, y_test))
+          validation_data=(x_test, y_test),
+          callbacks=[TensorBoard(log_dir='/tmp/' + model_name)])
 
-model.save('models/result.model')
+model.save('models/' + model_name + '.model')
